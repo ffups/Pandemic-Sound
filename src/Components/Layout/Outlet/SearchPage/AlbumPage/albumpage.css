@@ -148,6 +148,7 @@
     border: 1px solid white;
     transition: background-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
+   margin-left: 0;
   }
 @media (max-width: 768px) {
     .album-album-header {
