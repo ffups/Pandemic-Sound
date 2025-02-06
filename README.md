@@ -2,7 +2,7 @@
    - This app offers a interface for users to create, edit, and manage playlists effortlessly. It also enables song searches and provides personalized recommendations based on their listening history.
 - Installation
    - npm i will suffice to install all the necessary dependencies. 
-- Features
+- Featuresddd
    - Styling 
        - Uniform styling throughout the page
        - Responsive design
