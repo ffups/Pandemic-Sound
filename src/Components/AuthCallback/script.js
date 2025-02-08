@@ -6,20 +6,29 @@ export const redirectToAuthCodeFlow = async (clientId) => {
 
     localStorage.setItem("verifier", verifier);
 
-    const params = new URLSearchParams({
-        client_id: clientId,
-        response_type: "code",
-        redirect_uri: `${window.location.origin}/callback`,
-        scope: "user-library-modify user-read-private user-read-email playlist-modify-public playlist-modify-private playlist-read-private",
-        code_challenge_method: "S256",
-        code_challenge: challenge
-    });
+    const scopes = [
+        "user-library-modify",
+        "user-read-private",
+        "user-read-email",
+        "playlist-modify-public",
+        "playlist-modify-private",
+        "playlist-read-private"
+    ];
 
-    // Ensure proper encoding of the authorization URL
+    // Create params without encoding the redirect_uri first
+    const params = new URLSearchParams();
+    params.append("client_id", clientId);
+    params.append("response_type", "code");
+    params.append("redirect_uri", `${window.location.origin}/callback`);
+    params.append("scope", scopes.join(" "));
+    params.append("code_challenge_method", "S256");
+    params.append("code_challenge", challenge);
+
     const authorizeUrl = `https://accounts.spotify.com/authorize?${params.toString()}`;
-    window.location.href = authorizeUrl; // Using href instead of direct assignment
     console.log('Authorization URL:', authorizeUrl);
+    window.location.href = authorizeUrl;
 };
+
 
 export const getAccessToken = async (clientId, code) => {
     const verifier = localStorage.getItem("verifier");
