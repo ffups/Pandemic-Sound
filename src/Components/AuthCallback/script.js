@@ -18,6 +18,7 @@ export const redirectToAuthCodeFlow = async (clientId) => {
     // Ensure proper encoding of the authorization URL
     const authorizeUrl = `https://accounts.spotify.com/authorize?${params.toString()}`;
     window.location.href = authorizeUrl; // Using href instead of direct assignment
+    console.log('Authorization URL:', authorizeUrl);
 };
 
 export const getAccessToken = async (clientId, code) => {
